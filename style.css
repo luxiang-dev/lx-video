@@ -1,0 +1,132 @@
+* { box-sizing: border-box; }
+body { margin: 0px; font-family: Inter, "Microsoft YaHei", system-ui, sans-serif; color: rgb(48, 52, 59); background: rgb(255, 255, 255); font-size: 14px; }
+body.storage-loading #app { pointer-events: none; opacity: .5; }
+body.storage-loading::after { content: '正在加载本地项目…'; position: fixed; z-index: 10000; left: 50%; top: 50%; transform: translate(-50%,-50%); padding: 14px 22px; border-radius: 10px; background: white; box-shadow: 0 4px 20px #0002; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; color: inherit; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: rgb(138, 198, 255) solid 2px; outline-offset: 2px; }
+button { border: 0px; background: none; }
+textarea { resize: none; }
+.home { min-height: 100vh; padding: 18px 4% 70px; background: radial-gradient(at 52% -10%, rgb(216, 234, 255) 0%, rgb(242, 248, 255) 36%, transparent 68%), linear-gradient(125deg, rgb(255, 255, 255) 45%, rgb(237, 247, 255)); }
+.home-top { display: flex; justify-content: space-between; align-items: center; }
+.pill, .icon-btn, .control { background: rgb(255, 255, 255); border: 1px solid rgb(227, 231, 237); border-radius: 12px; box-shadow: rgba(28, 59, 90, 0.035) 0px 2px 7px; }
+.pill { padding: 10px 17px; }
+.support { color: rgb(112, 180, 240); font-size: 12px; margin-right: 20px; }
+.hero { max-width: 800px; margin: 85px auto 58px; }
+.brand { text-align: center; font-size: 40px; letter-spacing: -1.6px; font-weight: 750; margin: 0px 0px 33px; }
+.brand-icon { display: inline-grid; place-items: center; width: 42px; height: 42px; font-size: 28px; margin-right: 10px; color: rgb(38, 46, 56); }
+.scribble { color: rgb(112, 184, 239); font-size: 13px; font-weight: 600; margin: 0px 0px 7px 14px; transform: rotate(-3deg); width: max-content; }
+.compose { border: 1px solid rgb(227, 232, 238); border-radius: 20px; overflow: hidden; background: white; box-shadow: rgba(41, 75, 105, 0.08) 0px 2px 8px; }
+.compose textarea { width: 100%; height: 155px; border: 0px; outline: none; padding: 25px 22px; color: rgb(51, 51, 51); }
+.compose textarea::placeholder, .chat-input::placeholder { color: rgb(173, 180, 190); }
+.compose-foot { border-top: 1px solid rgb(237, 240, 244); display: flex; align-items: center; gap: 10px; padding: 13px 18px; background: rgb(250, 251, 253); }
+.spacer { flex: 1 1 0%; }
+.muted { color: rgb(155, 163, 173); }
+.send { width: 37px; height: 37px; border-radius: 50%; background: rgb(57, 155, 244); color: white; font-size: 20px; }
+.section { max-width: 1040px; margin: auto; }
+.section-head { display: flex; align-items: center; gap: 9px; border-bottom: 1px solid rgb(233, 237, 241); padding-bottom: 16px; }
+.section-head h2 { font-size: 18px; margin: 0px; }
+.small-btn { padding: 7px 12px; border: 1px solid rgb(224, 229, 235); background: rgb(255, 255, 255); border-radius: 8px; color: rgb(98, 107, 118); }
+.small-btn:hover, .pill:hover, .icon-btn:hover { background: rgb(244, 249, 255); color: rgb(38, 141, 234); }
+.toggle { display: flex; border: 1px solid rgb(225, 231, 239); border-radius: 8px; overflow: hidden; }
+.toggle button { padding: 7px 11px; background: rgb(255, 255, 255); }
+.toggle button.active { background: rgb(57, 155, 244); color: white; }
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 16px; }
+.projects.list { grid-template-columns: 1fr; }
+.project { position: relative; background: rgb(255, 255, 255); border: 1px solid rgb(229, 233, 238); border-radius: 12px; padding: 21px; display: flex; gap: 15px; min-width: 0px; cursor: pointer; box-shadow: rgba(33, 62, 90, 0.024) 0px 2px 6px; }
+.project:hover { border-color: rgb(158, 205, 246); box-shadow: rgba(78, 156, 233, 0.094) 0px 6px 20px; }
+.folder { font-size: 25px; color: rgb(68, 157, 244); }
+.project-body { min-width: 0px; }
+.project-title { font-weight: 700; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-path, .project-time { font-size: 12px; color: rgb(162, 168, 177); margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-actions { display: flex; margin-left: auto; align-items: flex-start; gap: 7px; }
+.project-actions button { color: rgb(156, 165, 173); }
+.project-actions button:hover { color: rgb(50, 150, 239); }
+.empty { grid-column: 1 / -1; padding: 45px; text-align: center; color: rgb(162, 170, 179); }
+.workspace { height: 100vh; overflow: hidden; background: rgb(255, 255, 255); }
+.canvas { position: absolute; inset: 0px; overflow: hidden; background-image: radial-gradient(rgb(219, 226, 233) 0.8px, transparent 0.8px); background-size: 18px 18px; touch-action: none; }
+.world { position: absolute; left: 0px; top: 0px; transform-origin: 0px 0px; }
+.edges { position: absolute; left: 0px; top: 0px; overflow: visible; pointer-events: none; }
+.edges path { fill: none; stroke: rgb(178, 194, 208); stroke-width: 2; }
+.node { position: absolute; width: 250px; background: white; border: 1px solid rgb(226, 231, 237); border-radius: 13px; box-shadow: rgba(31, 59, 80, 0.067) 0px 5px 20px; user-select: none; }
+.node.selected { border-color: rgb(96, 178, 252); box-shadow: rgba(185, 223, 255, 0.5) 0px 0px 0px 3px; }
+.node-head { display: flex; gap: 8px; align-items: center; padding: 12px 13px; border-bottom: 1px solid rgb(237, 241, 245); cursor: grab; }
+.node-head strong { flex: 1 1 0%; font-size: 13px; }
+.node-head button { color: rgb(164, 172, 180); }
+.node-body { padding: 13px; color: rgb(114, 123, 133); font-size: 12px; }
+.node-body textarea { border: 0px; outline: 0px; width: 100%; min-height: 75px; color: rgb(77, 89, 101); }
+.node-body img { width: 100%; display: block; border-radius: 7px; }
+.node-placeholder { height: 110px; display: grid; place-items: center; background: rgb(244, 248, 252); border: 1px dashed rgb(203, 220, 233); border-radius: 8px; color: rgb(144, 168, 188); text-align: center; }
+.ports { display: flex; justify-content: space-between; padding: 0px 11px 11px; color: rgb(162, 172, 182); font-size: 10px; }
+.port { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.dot { height: 10px; width: 10px; border: 2px solid rgb(174, 188, 202); border-radius: 50%; background: white; }
+.port:hover .dot, .port.pending .dot { border-color: rgb(50, 155, 245); background: rgb(204, 233, 255); }
+.topbar { position: absolute; z-index: 3; top: 15px; left: 15px; right: 15px; display: flex; align-items: flex-start; pointer-events: none; }
+.topbar > * { pointer-events: auto; }
+.bar-group { display: flex; align-items: center; background: rgba(255, 255, 255, 0.95); border: 1px solid rgb(228, 232, 237); border-radius: 12px; box-shadow: rgba(27, 62, 85, 0.04) 0px 2px 9px; padding: 4px; }
+.bar-group button { padding: 8px 12px; color: rgb(104, 114, 124); }
+.bar-group button.active { border-radius: 8px; background: rgb(234, 245, 255); color: rgb(57, 155, 244); }
+.project-name { width: 115px; border: 0px; outline: 0px; padding: 8px; background: transparent; }
+.center-tabs { position: absolute; left: 50%; transform: translateX(-50%); }
+.toolbar { position: absolute; z-index: 3; left: 15px; bottom: 15px; display: flex; align-items: center; gap: 2px; padding: 6px; background: white; border: 1px solid rgb(227, 232, 237); border-radius: 13px; box-shadow: rgba(33, 59, 74, 0.04) 0px 3px 12px; }
+.toolbar button { padding: 8px 10px; color: rgb(105, 117, 128); border-radius: 7px; }
+.toolbar button:hover { background: rgb(237, 247, 255); color: rgb(41, 152, 247); }
+.toolbar .zoom { font-size: 12px; min-width: 52px; text-align: center; }
+.chat { position: absolute; z-index: 4; right: 15px; top: 18%; bottom: 15px; width: 420px; max-width: calc(100% - 30px); display: flex; flex-direction: column; border: 1px solid rgb(227, 232, 237); border-radius: 14px; background: rgba(255, 255, 255, 0.93); box-shadow: rgba(31, 61, 82, 0.125) 0px 4px 20px; backdrop-filter: blur(10px); }
+.chat-head { padding: 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgb(240, 242, 244); }
+.chat-head strong { flex: 1 1 0%; }
+.chat-head button { color: rgb(157, 168, 176); }
+.chat-content { padding: 24px 16px; overflow: auto; flex: 1 1 0%; }
+.assistant-intro { display: flex; align-items: center; gap: 12px; }
+.assistant-logo { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 11px; background: rgb(231, 244, 255); color: rgb(49, 154, 244); font-size: 23px; }
+.assistant-intro small { color: rgb(156, 166, 176); }
+.assistant-intro h3 { font-size: 18px; margin: 3px 0px; }
+.intro-copy { font-size: 13px; color: rgb(139, 149, 158); margin: 22px 0px; }
+.suggestion { width: 100%; text-align: left; background: rgb(243, 246, 250); border-radius: 9px; margin-bottom: 8px; padding: 13px; color: rgb(102, 115, 128); }
+.suggestion b { display: block; color: rgb(81, 93, 105); }
+.suggestion small { display: block; margin-top: 4px; color: rgb(152, 163, 174); }
+.chat-compose { border: 1px solid rgb(171, 215, 250); border-radius: 18px; margin: 12px; padding: 12px; box-shadow: rgba(105, 173, 228, 0.16) 0px 2px 9px; background: white; }
+.chat-input { border: 0px; outline: 0px; width: 100%; height: 38px; }
+.chat-bottom { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgb(139, 149, 159); }
+.chat-bottom .send { width: 34px; height: 34px; }
+.message { padding: 12px; border-radius: 11px; background: rgb(244, 247, 250); margin-bottom: 12px; white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
+.message.user { background: rgb(234, 245, 255); margin-left: 35px; }
+.message.assistant { margin-right: 20px; }
+.documents { position: absolute; inset: 72px 0px 0px; display: flex; background: rgb(250, 251, 253); }
+.doc-sidebar { width: 250px; border-right: 1px solid rgb(229, 234, 240); background: white; padding: 20px; }
+.doc-sidebar h3 { font-size: 13px; margin: 0px 0px 18px; }
+.doc-list button { display: block; text-align: left; width: 100%; padding: 10px; border-radius: 7px; color: rgb(100, 113, 125); }
+.doc-list button.active { background: rgb(234, 245, 255); color: rgb(49, 154, 244); }
+.doc-main { flex: 1 1 0%; padding: 30px; display: flex; flex-direction: column; }
+.doc-main input { border-width: 0px 0px 1px; border-style: none none solid; border-color: currentcolor currentcolor rgb(229, 234, 240); border-image: none; padding: 12px; font-size: 19px; outline: 0px; background: transparent; }
+.doc-main textarea { flex: 1 1 0%; border: 0px; outline: 0px; padding: 20px 12px; background: transparent; line-height: 1.8; }
+.doc-empty { margin: auto; color: rgb(164, 174, 184); text-align: center; }
+.overlay { position: fixed; z-index: 10; inset: 0px; background: rgba(28, 42, 58, 0.4); display: grid; place-items: center; padding: 20px; }
+.dialog { width: 460px; max-width: 100%; background: rgb(255, 255, 255); border-radius: 16px; box-shadow: rgba(17, 44, 61, 0.19) 0px 18px 60px; padding: 23px; }
+.dialog h2 { font-size: 18px; margin: 0px 0px 20px; }
+.dialog label { display: block; font-size: 12px; color: rgb(114, 127, 139); margin: 14px 0px 6px; }
+.dialog input { width: 100%; padding: 10px; border: 1px solid rgb(220, 228, 235); border-radius: 8px; }
+.dialog p { color: rgb(144, 155, 165); font-size: 12px; line-height: 1.6; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 22px; }
+.primary { background: rgb(57, 155, 244); color: rgb(255, 255, 255); border: 0px; }
+.toast { position: fixed; z-index: 20; left: 50%; bottom: 26px; transform: translateX(-50%); background: rgb(48, 59, 72); color: white; border-radius: 8px; padding: 10px 16px; box-shadow: rgba(0, 0, 0, 0.133) 0px 4px 15px; }
+.add-menu { position: absolute; z-index: 5; left: 15px; bottom: 75px; padding: 6px; background: rgb(255, 255, 255); border: 1px solid rgb(226, 232, 237); border-radius: 12px; box-shadow: rgba(28, 53, 69, 0.133) 0px 6px 20px; }
+.add-menu button { display: block; width: 150px; text-align: left; padding: 11px; border-radius: 7px; }
+.add-menu button:hover { background: rgb(237, 247, 255); }
+.hidden { display: none !important; }
+@media (max-width: 760px) {
+  .hero { margin: 65px auto 45px; }
+  .brand { font-size: 32px; }
+  .projects { grid-template-columns: 1fr; }
+  .section-head { flex-wrap: wrap; }
+  .support { display: none; }
+  .chat { width: 340px; top: 95px; }
+  .center-tabs { position: static; transform: none; margin-left: auto; }
+  .project-name { width: 65px; }
+  .toolbar { max-width: calc(100% - 30px); overflow: auto; }
+  .doc-sidebar { width: 170px; }
+}
+/* H3 task lookup */
+.lookup-dialog{width:540px;max-height:90vh;overflow:auto}.lookup-row{display:flex;gap:8px;align-items:center}.lookup-row input{min-width:0;flex:1}.lookup-row button{white-space:nowrap}.lookup-state{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid #e7edf2;border-radius:10px;background:#f7fafd;color:#74818d;font-size:12px;overflow-wrap:anywhere}.lookup-state strong{font-size:15px;color:#2f8fdf}.lookup-error{color:#d64b55}.lookup-video{width:100%;max-height:42vh;margin-top:14px;background:#1d252e;border-radius:10px}.lookup-actions{display:flex;gap:8px;margin-top:12px}.lookup-actions a{text-decoration:none}.lookup-actions button,.lookup-actions a{font-size:13px}
+.dialog{max-height:calc(100vh - 40px);overflow:auto}.h3-task-dialog{width:540px}.h3-task-meta{display:flex;flex-direction:column;gap:8px;padding:14px;background:#f7fafd;border:1px solid #e7edf2;border-radius:10px;font-size:12px;overflow-wrap:anywhere}.h3-task-meta strong{font-size:15px;color:#3195e8}.h3-result-video{display:block;width:100%;max-height:38vh;margin-top:14px;background:#1d252e;border-radius:10px}
+.edges .edge-line{stroke:#76a9cf;stroke-width:2;pointer-events:none}.edges .edge-hit{stroke:transparent;stroke-width:18;pointer-events:stroke;cursor:pointer}.edges .edge-hit:hover{stroke:#79bfff44}.port{padding:0;color:inherit;border:0;background:none;font-size:inherit}.port:focus-visible{outline:2px solid #399bf4;border-radius:4px}.frame-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.frame-actions button{font-size:12px}.frame-actions button:disabled{opacity:.55;cursor:wait}
